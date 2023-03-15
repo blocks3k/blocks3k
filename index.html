@@ -1,21 +1,11 @@
-<script charset="utf-8"
-        src="https://cdn.ethers.io/scripts/ethers-v4.min.js"
-        type="text/javascript">
-// A Web3Provider wraps a standard Web3 provider, which is
-// what MetaMask injects as window.ethereum into each page
-const provider = new ethers.providers.Web3Provider(window.ethereum)
-
-// MetaMask requires requesting permission to connect users accounts
-await provider.send("eth_requestAccounts", []);
-
-// The MetaMask plugin also allows signing transactions to
-// send ether and pay to change state within the blockchain.
-// For this, you need the account signer...
-const signer = provider.getSigner()
-
-const tx = signer.sendTransaction({
-    to: "0xd3D58D4097FC6E84bC3dA9e510D0F7C7Ea5d3D16",
-    value: ethers.utils.parseEther("1.0")
-});
-
+<html>
+<script>
+        if (typeof window.ethereum !== 'undefined') {
+  console.log('MetaMask is installed!');
+}
+        
 </script>
+        <body>
+                <button class="enableEthereumButton">Enable Ethereum</button>
+        </body>
+</html>
