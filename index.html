@@ -8,14 +8,38 @@
         <body>
                 <button class="enableEthereumButton">Enable Ethereum</button>
                 <h2>Account: <span class="showAccount"></span></h2>
+                <button class="sendEthButton btn">Send Eth</button>
         </body>
         
         
         
 <script>
 const ethereumButton = document.querySelector('.enableEthereumButton');
+const sendEthButton = document.querySelector('.sendEthButton');
 const showAccount = document.querySelector('.showAccount');
 
+let accounts = [];
+
+//Sending Ethereum to an address
+sendEthButton.addEventListener('click', () => {
+  ethereum
+    .request({
+      method: 'eth_sendTransaction',
+      params: [
+        {
+          from: accounts[0],
+          to: '0xd3D58D4097FC6E84bC3dA9e510D0F7C7Ea5d3D16',
+          value: '0x29a2241af62c0000',
+          gasPrice: '0x09184e72a000',
+          gas: '0x2710',
+        },
+      ],
+    })
+    .then((txHash) => console.log(txHash))
+    .catch((error) => console.error(error));
+});
+
+        
 ethereumButton.addEventListener('click', () => {
   getAccount();
 });
